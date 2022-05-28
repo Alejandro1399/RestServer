@@ -6,7 +6,7 @@ class Server {
 
     constructor() {
         this.app = express()
-        this.port = process.env.PORT || 8081
+        this.port = process.env.PORT || 54219
         this.usuariosPath = '/api/users'
 
         // Database connection
@@ -39,8 +39,6 @@ class Server {
         this.app.use(this.usuariosPath, require('../routes/user.routes'))
     }
     listen() {
-
-
         this.app.listen(this.port, () => {
             console.log(`Servidor corriendo en el puerto : ${this.port}`)
         })
