@@ -1,6 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 const { dbConnection } = require('../database/config.db')
+const path = require("path");
 
 class Server {
 
@@ -27,6 +28,9 @@ class Server {
     middlewares() {
         // cors 
         this.app.use(cors())
+
+        // Other app.use middleware
+        this.app.use(express.static(path.join(__dirname, "client", "build")));
 
         // Parseo Json del body
         this.app.use(express.json())
