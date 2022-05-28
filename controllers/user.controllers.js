@@ -59,7 +59,7 @@ const usuariosDelete = async (req = request, res = response) => {
     // * Borrar un usuario por id definitivamente de la bd no es recomendable
     // const usuario = await Usuario.findByIdAndDelete(id)
 
-    const usuario = await Usuario.findByIdAndUpdate(id, { state: false })
+    const usuario = await Usuario.findByIdAndUpdate(id, { state: false }, { new: true })
     res.json({
         usuario
     })
@@ -74,7 +74,7 @@ const usuariosPut = async (req = request, res = response) => {
         resto.password = bcryptjs.hashSync(password, salt)
     }
 
-    const usuario = await Usuario.findByIdAndUpdate(id, resto)
+    const usuario = await Usuario.findByIdAndUpdate(id, resto, { new: true })
 
     res.json({
         msg: 'put api bien',
