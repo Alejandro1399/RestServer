@@ -7,8 +7,6 @@ const dbConnection = async () => {
         mongoose.connect(process.env.MONGODB_ATLAS, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false
         });
 
         console.log("Base de datos online")
