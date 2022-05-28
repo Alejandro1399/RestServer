@@ -9,21 +9,21 @@ const usuariosGet = async (req = request, res = response) => {
     // const { q, nombre } = req.query
     const { limite = 5, desde = 0 } = req.query
 
-    // const usuarios = await Usuario.find({ state: true })
-    //     .skip(Number(desde))
-    //     .limit(Number(limite))
+    const usuarios = await Usuario.find({ state: true })
+        .skip(Number(desde))
+        .limit(Number(limite))
 
-    // const total = await Usuario.countDocuments({ state: true })
+    const total = await Usuario.countDocuments({ state: true })
 
 
     // Promise. all ejecuta ambas promesas de manera simultanea es muy util para trabajar con hilos 
-    const [total, usuarios] = await Promise.all([
-        Usuario.countDocuments({ state: true }),
-        Usuario.find({ state: true })
-            .skip(Number(desde))
-            .limit(Number(limite))
+    // const [total, usuarios] = await Promise.all([
+    //     Usuario.countDocuments({ state: true }),
+    //     Usuario.find({ state: true })
+    //         .skip(Number(desde))
+    //         .limit(Number(limite))
 
-    ])
+    // ])
 
 
     res.json({
