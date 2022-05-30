@@ -13,6 +13,7 @@ const validarExistEmail = async (correo) => {
 
     // Verificar si el correo existe 
     const existEmail = await Usuario.findOne({ correo });
+
     if (existEmail) {
         throw new Error(`El correo : ${correo} ya esta registrado`)
         //  return res.status(400).json({
@@ -23,10 +24,31 @@ const validarExistEmail = async (correo) => {
 const validarExistId = async (id) => {
 
     // Verificar si el id existe 
-    const existId = await Usuario.findById(id );
+    const existId = await Usuario.findById(id);
     if (!existId) {
         throw new Error(`El id : ${id} no existe`)
 
     }
 }
-module.exports = { validarRol, validarExistEmail,validarExistId }
+
+const validarExistEmailAuth = async (correo) => {
+    // Verificar si el correo existe 
+    const existEmail = await Usuario.findOne({ correo });
+    if (!existEmail) {
+        throw new Error(`El correo : ${correo} no esta registrado`)
+
+    }
+    if (!existEmail.state) {
+        throw new Error(`El correo : ${correo} ha sido eliminado `)
+    }
+}
+
+
+
+
+module.exports = {
+    validarRol,
+    validarExistEmail,
+    validarExistId,
+    validarExistEmailAuth,
+}

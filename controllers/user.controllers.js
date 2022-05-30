@@ -56,12 +56,18 @@ const createUser = async (req = request, res = response) => {
 const usuariosDelete = async (req = request, res = response) => {
 
     const { id } = req.params
+
+    const user = req.user;
+
+
     // * Borrar un usuario por id definitivamente de la bd no es recomendable
     // const usuario = await Usuario.findByIdAndDelete(id)
 
     const usuario = await Usuario.findByIdAndUpdate(id, { state: false }, { new: true })
     res.json({
-        usuario
+        usuario,
+        user
+
     })
 }
 const usuariosPut = async (req = request, res = response) => {
